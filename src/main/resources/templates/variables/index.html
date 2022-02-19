@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h1 th:text="${titulo}"></h1>
+    <ul>
+        <li>
+            <a th:href="@{/variables/string/} + 'Hola Alexito'">Hola alexito</a>
+        </li>
+        <li>
+            <a th:href="@{/variables/string/} + 'Que tal Alexito'">Que tal</a>
+        </li>
+        <li>
+            <a th:href="@{/variables/string/} + 'Hola Andres' + '/' + 7">String y Integer</a>
+        </li>
+    </ul>
+    <img th:src="@{/images/longaniza.png}" alt="Longaniza artesanal">
+
+
+    <script th:src="@{/js/app.js}"></script>
+</body>
+</html>

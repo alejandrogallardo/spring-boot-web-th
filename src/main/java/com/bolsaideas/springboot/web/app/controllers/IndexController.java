@@ -1,6 +1,7 @@
 package com.bolsaideas.springboot.web.app.controllers;
 
 import com.bolsaideas.springboot.web.app.models.Usuario;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,13 @@ import java.util.List;
 @RequestMapping(value = "/app")
 public class IndexController {
 
+    @Value("${texto.indexcontroller.index.titulo}")
+    private String textoIndex;
+    @Value("${texto.indexcontroller.perfil.titulo}")
+    private String textoPerfil;
+    @Value("${texto.indexcontroller.listar.titulo}")
+    private String textoListar;
+
 //    Si no se indica por defecto es get
 //    Tambien se puede user @GetMapping o @PostMapping
 //    @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -23,7 +31,7 @@ public class IndexController {
 //    @RequestMapping(value = "/")
     @GetMapping({"/index", "/", "", "/home"})
     public String index(Model model) {
-        model.addAttribute("titulo", "Hola Spring Framework");
+        model.addAttribute("titulo", textoIndex);
         return "index";
     }
 
@@ -34,7 +42,7 @@ public class IndexController {
         usuario.setApellido("Gallardo");
         usuario.setEmail("agallardo@gmail.com");
         model.addAttribute("usuario", usuario);
-        model.addAttribute("titulo", "Perfil del Usuario: ".concat(usuario.getNombre()));
+        model.addAttribute("titulo", textoPerfil.concat(usuario.getNombre()));
         return "perfil";
     }
 
@@ -47,7 +55,7 @@ public class IndexController {
         usuarios.add(new Usuario("Sofia", "Gallardo", "sofia@madi.com"));
         */
         // tambien se puede usar Arrays.asList(elementos separados por coma);
-        model.addAttribute("titulo", "Listado de Usuarios");
+        model.addAttribute("titulo", textoListar);
 //        model.addAttribute("usuarios", usuarios);
         return "listar";
     }
